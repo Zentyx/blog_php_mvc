@@ -20,6 +20,31 @@ class PostsController {
         require_once('views/posts/show.php');
     }
 
+    public function viewInsertar() {
+
+        require_once('views/posts/viewInsertar.php');
+    }
+
+    public function viewUpdate() {
+
+        require_once('views/posts/viewUpdate.php');
+    }
+
+    public function insertar() {
+
+        $author= $_POST['author'];
+        $content = $_POST ['content'];
+        $imagen = $_POST['imagen'];
+        $titulo = $_POST['titulo'];
+        $created = $_POST['created'];
+        $modific =$_POST['modified'];
+        
+        Post::insert($author, $content, $imagen, $titulo, $created, $modific);
+        
+    }
+
+    //function mostrarInsertar (Type $var = null){no habra modelo, solo la vista   require_once ('views/posts/mostrarInsertar.php)}
+    //function insertar (Type $var = null){ id=$_POST['id']; Post::insert(); headerLocation:'?controller=post&action=index'
 }
 
 ?>

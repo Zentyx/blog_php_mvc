@@ -27,20 +27,22 @@ class PostsController {
 
     public function viewUpdate() {
 
+        $post = Post::find($_GET['id']);
         require_once('views/posts/viewUpdate.php');
     }
 
     public function insertar() {
 
-        $author= $_POST['author'];
-        $content = $_POST ['content'];
-        $imagen = $_POST['imagen'];
-        $titulo = $_POST['titulo'];
-        $created = $_POST['created'];
-        $modific =$_POST['modified'];
         
-        Post::insert($author, $content, $imagen, $titulo, $created, $modific);
+        //$imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
+        Post::insert();
+    }
+
+    public function modificar() {
+
         
+        //$imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
+        Post::update();
     }
 
     //function mostrarInsertar (Type $var = null){no habra modelo, solo la vista   require_once ('views/posts/mostrarInsertar.php)}

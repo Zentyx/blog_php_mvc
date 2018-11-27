@@ -5,5 +5,5 @@
 <p><strong>titol: </strong><?php echo $post->titol; ?></p>
 <p><strong>Creacion: </strong><?php echo $post->created; ?></p>
 <p><strong>Modificacion: </strong><?php echo $post->modific; ?></p>
-<a href="?controller=posts&action=viewUpdate">Modificar</a>
+<a href="?controller=posts&action=viewUpdate&id=<?php echo $post->id; ?>">Modificar</a>
 

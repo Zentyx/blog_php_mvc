@@ -7,7 +7,7 @@
     <input type="text" id="content" name="content">
     <br>
     <label>Imagen: </label>
-    <input type="file" id="imagen" name="imagen">
+    <input type="text" id="imagen" name="imagen">
     <br>
     <label>Titulo: </label>
     <input type="text" id="titulo" name="titulo" required="required">

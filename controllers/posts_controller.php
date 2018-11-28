@@ -31,11 +31,16 @@ class PostsController {
         require_once('views/posts/viewUpdate.php');
     }
 
+    public function eliminar() {
+        Post::delete($_GET['id']);
+        header("Location:/blog_php_mvc/index.php?controller=posts&action=index");
+    }
+    
     public function insertar() {
-
-        
         //$imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
         Post::insert();
+        header("Location:?controller=posts&action=viewInsertar");
+        
     }
 
     public function modificar() {
@@ -43,10 +48,11 @@ class PostsController {
         
         //$imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
         Post::update();
+        header("Location:/blog_php_mvc/index.php?controller=posts&action=index");
     }
+    
+    
 
-    //function mostrarInsertar (Type $var = null){no habra modelo, solo la vista   require_once ('views/posts/mostrarInsertar.php)}
-    //function insertar (Type $var = null){ id=$_POST['id']; Post::insert(); headerLocation:'?controller=post&action=index'
 }
 
 ?>

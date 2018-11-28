@@ -51,10 +51,30 @@ class Post {
         $content = $_POST ['content'];
         $imagen = $_POST['imagen'];
         $titulo = $_POST['titulo'];
-        $created = $_POST['created'];
-        $modific = $_POST['modified'];
+        $created = date('Y-m-d H:i:s');
+        $modific = date('Y-m-d H:i:s');
         $db = Db::getInstance();
-        $req = $db->prepare("INSERT INTO posts (author, content, imagen, titulo, created, modified) VALUES ('$author','$content','$imagen','$titulo','$created','$modific')");
+        $req = $db->prepare("INSERT INTO posts SET
+                author = :author,
+                content = :content,
+                titulo = :titulo,
+                imagen  = :imagen,
+                created = :created,
+                modified = :modified");
+        $author = htmlspecialchars(strip_tags($author));
+        $content = htmlspecialchars(strip_tags($content));
+        $imagen = htmlspecialchars(strip_tags($imagen));
+        $titulo = htmlspecialchars(strip_tags($titulo));
+        $created = htmlspecialchars(strip_tags($created));
+        $modific = htmlspecialchars(strip_tags($modific));
+
+        // bind parameters
+        $req->bindParam(':author', $author);
+        $req->bindParam(':content', $content);
+        $req->bindParam(':imagen', $imagen);
+        $req->bindParam(':titulo', $titulo);
+        $req->bindParam(':created', $created);
+        $req->bindParam(':modified', $modific);
         $req->execute();
     }
 
@@ -65,7 +85,7 @@ class Post {
         $imagen = $_POST['imagen'];
         $titulo = $_POST['titulo'];
         $created = $_POST['created'];
-        $modific = $_POST['modified'];
+        $modific = date('Y-m-d H:i:s');
         $db = Db::getInstance();
         $req = $db->prepare("UPDATE
                  posts 
@@ -96,9 +116,20 @@ class Post {
         $req->bindParam(':created', $created);
         $req->bindParam(':modified', $modific);
         $req->execute();
+        
     }
 
-    //update()
+    public static function delete($id) {
+        $db = Db::getInstance();
+        // nos aseguramos que $id es un entero
+        $id = intval($id);
+        $req = $db->prepare('DELETE FROM posts WHERE id = :id');
+        //"DELETE FROM `posts` WHERE `posts`.`id` = 13"?
+        $id = htmlspecialchars(strip_tags($id));
+        $req->bindParam(':id', $id);
+        $req->execute();
+    }
+
     //pubic static function insertar(Post post){ hacemos insercion en DB}
 }
 

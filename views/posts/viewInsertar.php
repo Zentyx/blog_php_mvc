@@ -13,10 +13,10 @@
     <input type="text" id="titulo" name="titulo" required="required">
     <br>
     <label>Created: </label>
-    <input type="date" id="created" name="created">
+    <input type="date" id="created" name="created" readonly="readonly" style="visibility: hidden">
     <br>
     <label>Modified: </label>
-    <input type="date" id="modified" name="modified">
+    <input type="date" id="modified" name="modified" readonly="readonly" style="visibility: hidden">
     <br>
     <input type="submit" value="Envia">
 </form>

@@ -4,5 +4,6 @@
         <?php echo $post->author; ?>
         <a href='?controller=posts&action=show&id=<?php echo $post->id; ?>'>Ver
             contenido</a>
+        <a href='?controller=posts&action=eliminar&id=<?php echo $post->id; ?>'>Eliminar</a>
     </p>
 <?php } ?>

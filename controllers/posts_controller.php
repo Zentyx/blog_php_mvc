@@ -21,33 +21,39 @@ class PostsController {
     }
 
     public function viewInsertar() {
-
+        //únicamente tenemos que mostrar la vista del formulario insertar
         require_once('views/posts/viewInsertar.php');
     }
 
+    public function insertar() {
+        //llamamos al metodo insert del modelo para que haga la sentencia con los datos recibidos del formulario
+        Post::insert();
+        //despues de haber insertado volvemos a llamar a la vista del formulario insertar por si queremos insertar de nuevo
+        header("Location:?controller=posts&action=viewInsertar");
+        
+    }
     public function viewUpdate() {
-
+        //Recogeremos todos los datos del post que queramos modificar
         $post = Post::find($_GET['id']);
+        //esos datos serán accesibles en el formulario
         require_once('views/posts/viewUpdate.php');
     }
 
     public function eliminar() {
+        //Filtramos por el post que queramos eliminar
         Post::delete($_GET['id']);
+        //llamamos directamente al modelo ya que no hay que mostrar nada
         header("Location:/blog_php_mvc/index.php?controller=posts&action=index");
     }
     
-    public function insertar() {
-        //$imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
-        Post::insert();
-        header("Location:?controller=posts&action=viewInsertar");
-        
-    }
+    
 
     public function modificar() {
 
         
-        //$imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
+        //llamamos al metodo update del modelo para modificar los valores antiguos por los del formulario
         Post::update();
+        //despues de haber hecho el update volvemos a la vista de todos los post
         header("Location:/blog_php_mvc/index.php?controller=posts&action=index");
     }
     

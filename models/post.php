@@ -47,13 +47,17 @@ class Post {
     }
 
     public static function insert() {
+        //recogemos los valores recibidos del formulario
         $author = $_POST['author'];
         $content = $_POST ['content'];
-        $imagen = $_POST['imagen'];
+        $imagen = $_FILES["imagen"]["tmp_name"];
+        $imagen = file_get_contents($_FILES["imagen"]["tmp_name"]);
         $titulo = $_POST['titulo'];
         $created = date('Y-m-d H:i:s');
         $modific = date('Y-m-d H:i:s');
+        
         $db = Db::getInstance();
+        //preparamos la sentencia
         $req = $db->prepare("INSERT INTO posts SET
                 author = :author,
                 content = :content,
@@ -61,28 +65,33 @@ class Post {
                 imagen  = :imagen,
                 created = :created,
                 modified = :modified");
+        
+        //antes de ejecutarla quitamos etiquetas 
         $author = htmlspecialchars(strip_tags($author));
         $content = htmlspecialchars(strip_tags($content));
-        $imagen = htmlspecialchars(strip_tags($imagen));
         $titulo = htmlspecialchars(strip_tags($titulo));
         $created = htmlspecialchars(strip_tags($created));
         $modific = htmlspecialchars(strip_tags($modific));
 
-        // bind parameters
+        // bind parameters para que sustituya cada palabra con el valor de la variable
         $req->bindParam(':author', $author);
         $req->bindParam(':content', $content);
         $req->bindParam(':imagen', $imagen);
         $req->bindParam(':titulo', $titulo);
         $req->bindParam(':created', $created);
         $req->bindParam(':modified', $modific);
+        //ahora la sentencia ya esta lista para ser ejecutada
         $req->execute();
     }
 
     public static function update() {
+        
+        //igual que en el insert recogemos los valores para hacer la sentencia y luego ejecutarla.
         $id = $_GET['id'];
         $author = $_POST['author'];
         $content = $_POST ['content'];
-        $imagen = $_POST['imagen'];
+        $imagen = $_FILES["imagen"]["tmp_name"];
+        $imagen = file_get_contents($_FILES["imagen"]["tmp_name"]);
         $titulo = $_POST['titulo'];
         $created = $_POST['created'];
         $modific = date('Y-m-d H:i:s');
@@ -102,7 +111,6 @@ class Post {
         $id = htmlspecialchars(strip_tags($id));
         $author = htmlspecialchars(strip_tags($author));
         $content = htmlspecialchars(strip_tags($content));
-        $imagen = htmlspecialchars(strip_tags($imagen));
         $titulo = htmlspecialchars(strip_tags($titulo));
         $created = htmlspecialchars(strip_tags($created));
         $modific = htmlspecialchars(strip_tags($modific));
@@ -115,18 +123,20 @@ class Post {
         $req->bindParam(':titulo', $titulo);
         $req->bindParam(':created', $created);
         $req->bindParam(':modified', $modific);
+        //ejecutamos la sentencia
         $req->execute();
-        
     }
 
     public static function delete($id) {
         $db = Db::getInstance();
         // nos aseguramos que $id es un entero
         $id = intval($id);
+        //preparamos la sentencia para eliminar el post correspondiente
         $req = $db->prepare('DELETE FROM posts WHERE id = :id');
-        //"DELETE FROM `posts` WHERE `posts`.`id` = 13"?
         $id = htmlspecialchars(strip_tags($id));
+        //concretamos que el id es el recibido del formulario
         $req->bindParam(':id', $id);
+        //ejecutamos la sentencia
         $req->execute();
     }
 

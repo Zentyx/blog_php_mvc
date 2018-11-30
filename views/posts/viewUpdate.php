@@ -1,3 +1,4 @@
+<!--rellenaremos los campos del formulario con los datos del post que hemos recibido para modificarlo.-->
 <form action="?controller=posts&action=modificar&id=<?php echo $post->id;?>" method="post" enctype="multipart/form-data">
     <br>
     <label>Autor: </label>
@@ -7,7 +8,8 @@
     <input type="text" id="content" name="content" value="<?php echo $post->content; ?>">
     <br>
     <label>Imagen: </label>
-    <input type="text" id="imagen" name="imagen" value="<?php echo $post->content; ?>">
+    <input type="file" id="imagen" name="imagen" value="data:image/png;base64,<?php echo base64_encode($post->imagen); ?>" alt="foto" >
+    <p><strong>imagen: <img src="data:image/png;base64,<?php echo base64_encode($post->imagen); ?>" alt="foto" /></p>
     <br>
     <label>Titulo: </label>
     <input type="text" id="titulo" name="titulo" required="required" value="<?php echo $post->titol; ?>">

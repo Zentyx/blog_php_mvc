@@ -1,3 +1,4 @@
+<!--Los datos que escribamos se los enviamos al modelo (método insertar) para poder hacer la inserción-->
 <form action="?controller=posts&action=insertar" method="post" enctype="multipart/form-data">
     <br>
     <label>Autor: </label>
@@ -7,7 +8,7 @@
     <input type="text" id="content" name="content">
     <br>
     <label>Imagen: </label>
-    <input type="text" id="imagen" name="imagen">
+    <input type="file" id="imagen" name="imagen">
     <br>
     <label>Titulo: </label>
     <input type="text" id="titulo" name="titulo" required="required">

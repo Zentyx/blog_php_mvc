@@ -30,8 +30,8 @@ class PostsController {
         Post::insert();
         //despues de haber insertado volvemos a llamar a la vista del formulario insertar por si queremos insertar de nuevo
         header("Location:?controller=posts&action=viewInsertar");
-        
     }
+
     public function viewUpdate() {
         //Recogeremos todos los datos del post que queramos modificar
         $post = Post::find($_GET['id']);
@@ -40,24 +40,18 @@ class PostsController {
     }
 
     public function eliminar() {
-        //Filtramos por el post que queramos eliminar
+        //como no hay que mostrar nada llamamos directamente al modelo
         Post::delete($_GET['id']);
-        //llamamos directamente al modelo ya que no hay que mostrar nada
+        //volvemos a mostrar todos los posts
         header("Location:/blog_php_mvc/index.php?controller=posts&action=index");
     }
-    
-    
 
     public function modificar() {
-
-        
         //llamamos al metodo update del modelo para modificar los valores antiguos por los del formulario
         Post::update();
         //despues de haber hecho el update volvemos a la vista de todos los post
         header("Location:/blog_php_mvc/index.php?controller=posts&action=index");
     }
-    
-    
 
 }
 

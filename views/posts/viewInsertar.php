@@ -1,4 +1,4 @@
-<!--Los datos que escribamos se los enviamos al modelo (método insertar) para poder hacer la inserción-->
+<!--Los datos que escribamos se los enviamos al modelo (método insertar) para poder hacer la inserción sql-->
 <form action="?controller=posts&action=insertar" method="post" enctype="multipart/form-data">
     <br>
     <label>Autor: </label>

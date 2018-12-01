@@ -1,4 +1,5 @@
-<!--rellenaremos los campos del formulario con los datos del post que hemos recibido para modificarlo.-->
+<!--rellenaremos los campos del formulario con los datos del post que hemos recibido para modificarlo.
+enviaremos los datos modiciados al controlador para que este llame al modelo y hacer update-->
 <form action="?controller=posts&action=modificar&id=<?php echo $post->id;?>" method="post" enctype="multipart/form-data">
     <br>
     <label>Autor: </label>

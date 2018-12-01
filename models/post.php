@@ -140,7 +140,6 @@ class Post {
         $req->execute();
     }
 
-    //pubic static function insertar(Post post){ hacemos insercion en DB}
 }
 
 ?>

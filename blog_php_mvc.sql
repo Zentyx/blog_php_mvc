@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `posts`
 --
-
+CREATE DATABASE IF NOT EXISTS blog_php_mvc;
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `author` varchar(255) NOT NULL,

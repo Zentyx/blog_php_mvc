@@ -1,24 +1,28 @@
-<!--Los datos que escribamos se los enviamos al modelo (método insertar) para poder hacer la inserción sql-->
+<!--Los datos que escribamos se los enviamos al controlador (método insertar) para llamar al modelo y hacer
+el insert-->
+
 <form action="?controller=posts&action=insertar" method="post" enctype="multipart/form-data">
-    <br>
+    <div>
+    <div>
     <label>Autor: </label>
-    <input type="text" id="author" name="author">
-    <br>
+    <input class="form-control" type="text" id="author" name="author">
+    </div>
+    <div>
     <label>Content: </label>
-    <input type="text" id="content" name="content">
-    <br>
+    <input class="form-control" type="text" id="content" name="content">
+    </div>
+    <div>
     <label>Imagen: </label>
     <input type="file" id="imagen" name="imagen">
-    <br>
+    </div>
+    <div>
     <label>Titulo: </label>
-    <input type="text" id="titulo" name="titulo" required="required">
-    <br>
-    <label>Created: </label>
+    <input class="form-control" type="text" id="titulo" name="titulo" required="required">
+    </div>
     <input type="date" id="created" name="created" readonly="readonly" style="visibility: hidden">
-    <br>
-    <label>Modified: </label>
     <input type="date" id="modified" name="modified" readonly="readonly" style="visibility: hidden">
     <br>
-    <input type="submit" value="Envia">
+    <input class="btn btn-primary" type="submit" value="Envia">
+    </div>
 </form>
 
